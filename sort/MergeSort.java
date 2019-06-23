@@ -16,14 +16,14 @@ public class MergeSort {
 
     public static void mergerSort(int a[], int left, int right, int[] temp) {
         if (right > left) {
-            int mid = (right +left) / 2;
+            int mid = (right + left) / 2;
             mergerSort(a, left, mid, temp);
             mergerSort(a, mid + 1, right, temp);
             merger(a, left, mid, right, temp); //合并
         }
     }
 
-
+    //合并
     public static void merger(int a[], int left, int mid, int right, int temp[]) {
         int i = left;
         int j = mid + 1;
@@ -52,8 +52,31 @@ public class MergeSort {
         }
         t = 0;
         //将temp中的元素全部拷贝到原数组中
-        while(left <= right){
+        while (left <= right) {
             a[left++] = temp[t++];
+        }
+    }
+
+    public void mergerSort2(int[] a, int left, int right, int[] temp) {
+        if (right < left) {
+            return;
+        }
+        int mid = (left + right) / 2;
+        mergerSort2(a, left, mid, temp);
+        mergerSort2(a, mid + 1, right, temp);
+    }
+
+    public void merger2(int[] a, int left, int mid, int right, int[] temp) {
+        int i = left;
+        int j = mid;
+        int t = 0;
+        while (i < mid && j < right) {
+            if (a[i] < a[j]) {
+                temp[t]=a[i];
+            }else {
+                temp[t]=a[j];
+            }
+            t++;
         }
     }
 }
